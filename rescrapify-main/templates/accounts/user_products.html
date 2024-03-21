@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Cart - Re:scrapify{% endblock %}</title>
+{% block body %}
+
+<section class="w3l-blog bloghny-page">
+    <div class="blog py-5" id="Newsblog">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="row">
+                <div class=" bloghnypage-left">
+                    <div class="row">
+                        {% for item in items %}
+
+                        <div class="item mt-5">
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                    <a href="{% url 'products:get_product' item.slug %}" class="zoom d-flex justify-content-center">
+                                        <img class="card-img-bottom d-block pic-1 img-fluid radius-image" src="/media/{{item.item_image.first.image}}" alt="blog-img">
+                                    </a>
+                                </div>
+                                <div class="card-body blog-details">
+                                    <div class="price-review d-flex justify-content-between mb-1 align-items-center">
+                                        <p><i class="fas fa-rupee-sign"></i> {{item.price}}</p>
+                                    </div>
+                                    <a href="{% url 'products:get_product' item.slug %}" class="blog-desc">{{item.item_name}}</a>
+                                    <p class="mt-1">{{item.description}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="author align-items-center">
+                                        <a href="#author" class="post-author">
+                                          
+                                        </a>
+                                        <ul class="blog-meta d-flex justify-content-around">
+                                            <li>
+                                                <span class="price-review">
+                                                    <p>{% if item.sold %}Sold
+                                                    {% else %}
+                                                    Available
+                                                    {% endif %}</p>
+                                                </span>
+                                                
+                                            </li>
+                                            <li>
+                                                <span class="price-review">
+                                                    <p>
+                                                    <i class="fa fa-thumbs-up"></i> {{item.likes}}</p>
+                                                </span>
+                                                
+                                            </li>
+                                            <li>
+                                                <span class="price-review">
+                                                    <p>
+                                                    {% if item.likes < 10 %}
+                                                    <i class=""></i> Bronze</p>
+                                                    {% else %}
+                                                    <i class=""></i> Silver</p>
+                                                    {% endif %}
+                                                    
+                                                </span>
+                                                
+                                            </li>
+                                        </ul>
+                                        <div class="date">
+                                            <p>{{item.added_at.date}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+               
+            </div>
+           
+        </div>
+    </div>
+</section>
+
+{% endblock %}

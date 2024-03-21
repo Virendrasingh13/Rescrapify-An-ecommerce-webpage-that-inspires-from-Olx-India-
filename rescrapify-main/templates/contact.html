@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}CONTACT - Re:scrapify{% endblock %}</title>
+{% block body %}
+<section class="w3mid-gap"></section>
+<!--/Banner-Start-->
+<!--/inner-page-->
+<div class="inner-banner py-5">
+    <section class="w3l-breadcrumb text-left py-sm-5 ">
+        <div class="container">
+            <div class="w3breadcrumb-gids">
+                <div class="w3breadcrumb-left text-left">
+                    <h2 class="inner-w3-title">
+                        Home </h2>
+                </div>
+                <div class="w3breadcrumb-right">
+                    <ul class="breadcrumbs-custom-path">
+                        <li class=""><a href="{% url 'home:home' %}">Home</a></li>
+                        <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Contact </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<!--//inner-page-->
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+    <!-- contact page -->
+
+    <section class="w3l-contact-2 j" id="contact">
+        <div class="container py-lg-4 py-md-3 py-2">
+            <div class="title-content text-center">
+                <h6 class="title-subw3hny mb-1">Get in touch</h6>
+                <h5 class="title-w3l mb-5">Contact with our support <br>
+                </h5>
+            </div>
+
+            <div class="contact-grids mt-5 pt-lg-3">
+                <div class="contact-left">
+                    <div class="row cont-details">
+                        <div class="col-lg-4 col-md-6 cont-top">
+                            <div class="cont-left text-center">
+                                <span class="fas fa-map-marker-alt"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Office Address:</h6>
+                                <p>Lorem ipsum, 343 ShoppyKart, #4148 Honey street, NY - 62617.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 cont-top margin-up ps-lg-5">
+                            <div class="cont-left text-center">
+                                <span class="fas fa-phone-alt"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Call for help :</h6>
+                                <p><a href="tel:+1(21) 234 4567">+1(21) 234 557 4567</a></p>
+                                <p><a href="tel:+1(21) 234 4567">+1(21) 234 557 4568</a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 cont-top margin-up">
+                            <div class="cont-left text-center">
+                                <span class="far fa-envelope"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>
+                                    Mail us:</h6>
+                                <p><a href="" class="mail"><span class="__cf_email__"
+                                            data-cfemail="30434540405f4244705d51595c1e535f5d">[email&#160;protected]</span></a>
+                                </p>
+                                <p><a href="" class="mail"><span class="__cf_email__"
+                                            data-cfemail="a2c1cdccd6c3c1d6e2cfc3cbce8cc1cdcf">[email&#160;protected]</span></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-right mt-lg-4">
+                    <form method="post" class="signin-form" id="contact-form" autocomplete="off">{% csrf_token %}
+                        {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                                    {{ message }}
+                                  </div>
+                                  {% endfor %}      
+                            {% endif %}
+                        <div class="input-grids">
+
+                            
+                            <input type="text" name="name" id="name" placeholder="Your Name*" class="contact-input"
+                                required="">
+                            <input type="email" name="email" id="email" placeholder="Your Email*" class="contact-input"
+                                required="">
+                            <input type="text" name="phone_no" id="phone_no" placeholder="Enter your Phone Number *"
+                                required="">
+                            <input type="text" name="subject" id="subject" placeholder="Subject*" class="contact-input"
+                                required="">
+                        </div>
+                        <div class="form-input">
+                            <textarea name="message" id="message" placeholder="Type your message here*"
+                                required=""></textarea>
+                        </div>
+                        <div class="submit text-lg-right">
+                            <button class="btn btn-style btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="map-iframe mt-5">
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317718.69319292053!2d-0.3817765050863085!3d51.528307984912544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C+UK!5e0!3m2!1sen!2spl!4v1562654563739!5m2!1sen!2spl" width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
+                 -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3672.19493324138!2d72.5050582!3d23.0166138!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848ac8a7faf3%3A0xc49f901866d2abd5!2sShri%20Chimanbhai%20Patel%20Institute%20of%20Management%20%26%20Research!5e0!3m2!1sen!2sin!4v1708869918948!5m2!1sen!2sin"
+                    width="100%" height="400" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </section>
+    <!-- /contact-form-2 -->
+    <div style="margin: 8px auto; display: block; text-align:center;">
+
+
+{% endblock %}

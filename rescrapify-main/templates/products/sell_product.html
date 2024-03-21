@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Add Product For Sale{% endblock %}</title>
+
+
+
+{% block body %}
+
+<section class="w3mid-gap"></section>
+<!--/Banner-Start-->
+<!--/inner-page-->
+<div class="inner-banner py-5">
+    <section class="w3l-breadcrumb text-left py-sm-5 ">
+        <div class="container">
+            <div class="w3breadcrumb-gids">
+                <div class="w3breadcrumb-left text-left">
+                    <h2 class="inner-w3-title">
+                        Add Product </h2>
+                </div>
+                <div class="w3breadcrumb-right">
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="/">Home</a></li>
+                        <li class=""><span class="fas fa-angle-double-right mx-2"></span><a href="#"> product <a></li>
+                        <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Sell </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<!--//inner-page-->
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+</div>
+<section class="w3l-forml-main ">
+    <div class="form-hnyv-sec py-sm-5 py-3">
+        <!--form-stars-here-->
+        <div class="form-wrapv">
+
+            <h2>Add Product details to sell</h2>
+            <form method="post" id="signup-form " class="signin-form" autocomplete="off" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                        {{ message }}
+                    </div>
+                  {% endfor %}      
+                {% endif %}
+                {% comment %} <div class="row contact-form">
+                    <div class="col-sm-6 form-sub-w3">
+                        <input type="text" name="first_name" class="" placeholder="First Name" />
+                        <div class="icon-w3">
+                            <span class="fas fa-user" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-sub-w3">
+                        <input type="text" name="last_name" class="" placeholder="Last Name" />
+                        <div class="icon-w3">
+                            <span class="fas fa-user" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+                <div class="form-sub-w3">
+                    <select class="slct-lst" id="selectType"  required>
+                        <option selected disabled value="">Choose Type</option>
+                        <option value="creative">CREATIVE</option>
+                        <option value="scrapify">SCRAPIFY</option>
+                        
+                    </select>
+                    <div class="icon-w3">
+                        <span class="fas fa-align-justify" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-sub-w3">
+                    <select class="slct-lst" id="selectCategory" name="category_slug" required>
+                        <option selected disabled value="">Choose Category</option>
+                    </select>
+                    <div class="icon-w3">
+                        <span class="fas fa-stream" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-sub-w3">
+                    <input type="text" name="item_name" placeholder="Product Name*" required="" />
+                    <div class="icon-w3">
+                        <span class="fas a-solid fa-store" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-sub-w3">
+                    <input type="number" name="price" placeholder="Price*" />
+                    <div class="icon-w3">
+                        <span class="fas fa-rupee-sign"></span>
+                    </div>
+                </div>
+                <div class="form-sub-w3">
+                    <div class="form-group image-preview-container">
+                        <input type="file" name="item_image1" id="image" class="form-control-file" accept="image/*" />
+                        <div class="icon-w3" id="imagespan">
+                            <span class="fas fa-file-image" aria-hidden="true"></span>
+                        </div>
+                            {% comment %} <img class="image-preview image-box" id="image-preview" src="#" alt="Image Preview" style="display: none;"> {% endcomment %}
+                        
+                    </div>
+                </div>
+                <div class="form-sub-w3">
+                    <div class="form-group image-preview-container">
+                        <input type="file" name="item_image2" id="image" class="form-control-file" accept="image/*" />
+                        <div class="icon-w3" id="imagespan">
+                            <span class="fas fa-file-image" aria-hidden="true"></span>
+                        </div>
+                            {% comment %} <img class="image-preview image-box" id="image-preview-1" src="#" alt="Image Preview" style="display: none;"> {% endcomment %}
+                        
+                    </div>
+                </div>
+                <div class="form-sub-w3">
+                    <div class="form-input">
+                        <textarea name="description" rows="4" class="txtara" placeholder="Product Description*"></textarea>
+                        <div class="icon-w3">
+                            <span class="fas fa-clipboard" aria-hidden="true" id="password-toggle"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-sub-w3ls card-footer">
+                    <div class="mt-2 submit-button text-center">
+                        <button type="submit" class="btn btn-style btn-primary">Submit</button>
+                    </div>
+                </div>
+                
+            </div>
+            </form>
+
+        </div>
+        <!--//form-ends-here-->
+    </div>
+    <!-- //coming -->
+</section>
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+
+{%endblock%}
+
+
+{% block js %}
+
+    <script>
+        var get_categories_by_type = "{% url 'products:get_categories_by_type' %}";
+    </script>
+
+    <script src="{% static 'js/sellproduct.js'%}"></script>
+    <script src="{%static 'js/imagepreview.js'%}"></script>
+
+{% endblock %}

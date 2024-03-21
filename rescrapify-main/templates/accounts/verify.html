@@ -1,0 +1,36 @@
+<script>
+    {% comment %} function verifyEmail(slug) {
+        fetch(`/verify/${slug}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const jsonData = JSON.parse('{{ json_data|escapejs }}');
+            if (data.success) {
+                alert(data.message);
+                // Redirect to the login page
+                window.location.href = '/login'; // Adjust the URL as per your project's setup
+            } else {
+                alert(data.message);
+                window.location.href = '/register';
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('An error occurred. Please try again later.');
+        });
+    } {% endcomment %}
+    var jsonData = JSON.parse('{{ data|escapejs }}');
+    if (jsonData.success) {
+        alert(jsonData.message);
+        // Redirect to the login page
+        window.location.href = "{% url 'accounts:login' %}"; // Adjust the URL as per your project's setup
+    } else {
+        alert(jsonData.message);
+        window.location.href =  "{% url 'accounts:register' %}";
+    }
+</script>
+    

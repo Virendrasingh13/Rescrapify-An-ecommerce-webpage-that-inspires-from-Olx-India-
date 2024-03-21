@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Product - Re:scrapify{% endblock %}</title>
+{% block body %}
+<section class="w3mid-gap"></section>
+<!--/Banner-Start-->
+<!--/inner-page-->
+<div class="inner-banner py-5">
+    <section class="w3l-breadcrumb text-left py-sm-5 ">
+        <div class="container">
+            <div class="w3breadcrumb-gids">
+                <div class="w3breadcrumb-left text-left">
+                    <h2 class="inner-w3-title">
+                        Home </h2>
+                </div>
+                <div class="w3breadcrumb-right">
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="/">Home</a></li>
+                        <li class=""><span class="fas fa-angle-double-right mx-2"></span><a href="#"> product <a></li>
+                        <li class="active"><span class="fas fa-angle-double-right mx-2"></span> {{item.item_name}} </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<!--//inner-page-->
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+
+
+    <section class="w3l-ecommerce-main">
+        <!-- /products-->
+        <div class="ecom-contenthny w3l-ecommerce-main-inn py-5">
+            <div class="container py-lg-5">
+                <!--/row1-->
+                <div class="sp-store-single-page row">
+                    <div class="col-lg-5 single-right-left">
+                        <div class="flexslider1">
+                            <div class="clearfix"></div>
+                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                                <ul class="slides" style="width: 1200%; transition-duration: 0.5s; transform: translate3d(-474px, 0px, 0px);">
+                                    
+                                    {% for image in item.item_image.all %}
+                                    <li data-thumb="" class="clone"
+                                        style="width: 474px; float: left; display: block;">
+                                        <div class="thumb-image"> <img src="../media/{{image.image}}"
+                                                data-imagezoom="true" class="img-fluid radius-image" alt=" "> </div>
+                                    </li>
+                                    {% endfor %}
+                                    
+                                </ul>
+                            </div>
+                            
+                            <ul class="flex-direction-nav">
+                                <li><a class="flex-prev" href="#">Previous</a></li>
+                                <li><a class="flex-next" href="#">Next</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="eco-buttons mt-5 d-flex justify-content-around">
+
+                            <div class="shopv single-item">
+                                {% comment %} <form action="#" method="post">
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="shopv_item" value="{{item.item_name}}">
+                                    <input type="hidden" name="amount" value="{{item.price}}">
+                                    <button type="submit"
+                                        class="shopv-cart pshopv-cart add-to-cart btn btn-style btn-primary">
+                                        Add to Cart
+                                    </button>
+                                </form> {% endcomment %}
+                                <a class="shopv-cart pshopv-cart add-to-cart btn btn-style btn-primary" href="{% url 'accounts:add_to_cart' item.slug %}">Add to Cart</a>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    <div class="col-lg-7 text-start single-right-left ps-lg-5">
+                        <h3>{{item.item_name}}
+                        </h3>
+                        <div class="caption">
+
+                            <span class="item_price">
+                                {% if request.user.is_authenticated %}
+                                {% for liked in item.liked_by.all %}
+                                    {% if liked.user == request.user %}
+                                    <i class="0 heart-icon fas fa-heart" data-slug="{{ item.slug }}" aria-hidden="true"></i>
+                                    {% else %}
+                                        {% if forloop.last %}
+                                        <i class="1 heart-icon far fa-heart" data-slug="{{ item.slug }}" aria-hidden="true"></i>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% empty %}
+                                    <i class="2 heart-icon price far fa-heart" data-slug="{{ item.slug }}" aria-hidden="true"></i>
+                                    {% endfor %}
+                                    
+                            {% else %}
+                                <i class="4 heart-icon price far fa-heart" data-slug="{{ item.slug }}" aria-hidden="true"></i>
+                            {% endif %}
+
+                                {{item.likes}}</span>
+
+                            <h6>
+                                <span class="item_price"><i class="fas fa-rupee-sign"></i> {{item.price}}</span>
+                                 Free Delivery
+                            </h6>
+                        </div>
+                        {% comment %} <div class="desc_single my-4">
+                            <ul class="emi-views">
+                                <li><span>Special Price</span> Get extra 5% off (price inclusive of discount)</li>
+                                <li><span>Bank Offer</span> 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</li>
+                                <li><span>Bank Offer</span> 5% Cashback* on HDFC Bank Debit Cards</li>
+                                <li><span>Bank Offer</span> Extra 5% off* with Axis Bank Buzz Credit Card</li>
+                            </ul>
+                        </div> {% endcomment %}
+                        <div class="desc_single my-4">
+                            <h5>Description:</h5>
+                            <p>{{item.description}}</p>
+                        </div>
+                        <div class="description-apt d-grid mb-4">
+                            <div class="occasional">
+                                <h5 class="sp_title mb-3">Category:</h5>
+                                <ul class="single_specific">
+                                    <li>
+                                       {{item.category_name.category_type}}</li>
+                                    
+                                </ul>
+
+                            </div>
+
+                            <div class="color-quality">
+                                <h5 class="sp_title">Sub Category:</h5>
+                                <ul class="single_serv">
+                                    <li>
+                                        <a href="#">{{item.category_name}}</a>
+                                    </li>
+                                
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="description mb-4">
+                            {% comment %} <h5>Check delivery, payment options and charges at your location</h5> {% endcomment %}
+                            <h5>Cash on Delivery available</h5>
+                            {% comment %} <form action="#" class="d-flex" method="post">
+                                <input type="text" placeholder="Enter pincode" required="">
+                                <button class="submit btn btn-style btn-primary ms-3" type="submit">Check</button>
+                            </form> {% endcomment %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--//row1-->
+
+        </div>
+    </section>
+
+
+{% endblock %}
+{% block js %}
+
+    
+<script>
+    var path =  "{% url 'accounts:like_product' %}";
+    var cur_path = "{{ request.path }}";
+    console.log(path);
+</script>
+<script src="{% static 'js/like_product.js' %}"></script>
+
+{% endblock js %}
+   

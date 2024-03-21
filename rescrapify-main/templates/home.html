@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Home - Re:scrapify{% endblock %}</title>
+{% block body %}
+    <section class="w3mid-gap"></section>
+    <!--/Banner-Start-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Home </h2>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li class="active"><a href="{% url 'home:home' %}">Home</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+	<div style="margin: 8px auto; display: block; text-align:center;">
+    
+
+
+        <section class="w3l-ecommerce-main">
+            <!-- /products-->
+            <div class="ecom-contenthny w3l-ecommerce-main-inn py-5">
+                <div class="container py-lg-5">
+                    <div class="ecommerce-grids row">
+                        <div class="row ecomhny-topbar">
+                            <div class="col-6 ecomhny-result">
+                                <h4 class="ecomhny-result-count"> Showing all <span id="itemCount">{{ items.count }}</span> Results</h4>
+                            </div>
+                            <div class="col-6 ecomhny-topbar-ordering">
+
+                                <div class="ecom-ordering-select d-flex">
+                                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                    <select id="categorySelect">
+                                        <option value="All" selected="selected" >All</option>
+                                        <option value="scrapify">SCRAPIFY</option>
+                                        <option value="creative">CREATIVE</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="ecommerce-left-hny col-lg-4">
+                            <!--/ecommerce-left-hny-->
+                            <aside class="pe-lg-4">
+                                <div class="sider-bar">
+                                    <!-- /Gallery-imgs -->
+    
+                                    <div class="single-gd mb-5">
+                                        <h4>Product Categories</h4>
+                                        <ul class="list-group single">
+                                            {% for category, unsold_items in unsold_items_by_category.items %}
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span class="cat_name">{{ category.category_name }}</span>
+                                                <span class="badge badge-primary badge-pill">{{ unsold_items.count }}</span>
+                                            </li>
+                                            {% endfor %} 
+                                            
+                                        </ul>
+                                    </div>
+                                    
+    
+                                   
+                                </div>
+                            </aside>
+                            <!--//ecommerce-left-hny-->
+                        </div>
+
+                        <!-- /row-->
+                        <div class="ecommerce-right-hny col-lg-8">
+                            
+                            <div class="ecom-products-grids row" id="itemsGrid">
+                                {% if items.count > 0 %}
+                                {% for item in items %}
+                                <div class="col-lg-4 col-6 product-incfhny mt-4">
+                                    <div class="product-grid2 shopv">   
+                                        <div class="product-image2">
+                                            <a href="{% url 'products:get_product' item.slug %}">
+                                                <img class="pic-1 img-fluid radius-image" src="/media/{{item.item_image.first.image}}">
+                                                <img class="pic-2 img-fluid radius-image" src="/media/{{item.item_image.first.image}}">
+                                            </a>
+                                            <ul class="social">
+                                                <li><a href="{% url 'products:get_product' item.slug %}" data-tip="Quick View"><span class="fa fa-eye"></span></a></li>
+    
+                                                <li><a href="{% url 'accounts:add_to_cart' item.slug %}" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a>
+                                                </li>
+                                            </ul>
+                                            <div class="shopv single-item">
+                                                {% comment %} <form action="#" method="post">
+                                                    <input type="hidden" name="cmd" value="_cart">
+                                                    <input type="hidden" name="add" value="1">
+                                                    <input type="hidden" name="shopv_item" value="Checkered Casual Shirt">
+                                                    <input type="hidden" name="amount" value="899.99">
+                                                    <button type="submit" class="shopv-cart pshopv-cart add-to-cart">
+                                                        Add to Cart
+                                                    </button>
+                                                </form> {% endcomment %}
+                                                <a class="shopv-cart pshopv-cart add-to-cart btn btn-style btn-primary" href="{% url 'accounts:add_to_cart' item.slug %}">Add to Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="product-single.html">{{item.item_name}} </a></h3>
+                                            <span class="price"><i class="fas fa-rupee-sign"></i> {{item.price}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% endfor %}
+                                
+                                {% else %}
+                                <h3>There is no item related to your filter </h3>
+                                {% endif %}
+                                
+    
+                            </div>
+                            {% comment %} <div class="row w3l-3-grids mt-5">
+                                <div class="col-md-6 mt-md-0">
+                                    <div class="grids3-info position-relative">
+                                        <a href="products-1.html" class="d-block zoom"><img src="assets/images/banner5.jpg" alt="" class="img-fluid news-image"></a>
+                                        <div class="w3-grids3-info">
+                                            <h4 class="gdnhy-1"><a href="products.html">Platform Velvet <br>Sandals</a>
+    
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-md-0 mt-4 grids3-info2">
+                                    <div class="grids3-info second position-relative">
+                                        <a href="products-1.html" class="d-block zoom"><img src="assets/images/banner4.jpg" alt="" class="img-fluid news-image"></a>
+                                        <div class="w3-grids3-info second">
+                                            <h4 class="gdnhy-1"><a href="products.html">Pebbled Weekend <br>Bag</a>
+    
+                                            </h4>
+    
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div class="pagination">
+                                <ul>
+                                    <li class="prev"><a href="#page-number"><span class="fa fa-angle-double-left"></span></a></li>
+                                    <li><a href="#page-number" class="active">1</a></li>
+                                    <li><a href="#page-number">2</a></li>
+                                    <li><a href="#page-number">3</a></li>
+    
+                                    <li class="next"><a href="#page-number"><span class="fa fa-angle-double-right"></span></a></li>
+                                </ul>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+{% block js %}
+
+<script>
+    document.querySelectorAll('.cat_name').forEach(item => {
+        item.addEventListener('click', function() {
+            var category_name = this.innerText.trim(); // Extract the category name from the clicked element
+            fetchProducts(category_name); // Fetch products for the selected category
+        });
+    });
+    document.getElementById('categorySelect').addEventListener('change', function(){
+        var selectedCategory = this.value;
+        fetchProducts(selectedCategory);
+    });
+
+    function fetchProducts(category){
+        fetch("{% url 'home:home' %}category_item/?category=" + category)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success){
+                const c = true;
+                updateItemGrid(data.items);
+                console.log(data.items);
+               
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            alert(error);
+            console.log(error);
+        });
+    }
+
+    function updateItemGrid(items){
+        var ItemsGrid = document.querySelector('.ecom-products-grids');
+        ItemsGrid.innerHTML = '';
+        var count = 0;
+            let found = false;
+            items.forEach(function(item){
+                count += 1;
+                found = true;
+                var itemHTML = `<div class="col-lg-4 col-6 product-incfhny mt-4">
+                    <div class="product-grid2 shopv">   
+                        <div class="product-image2">
+                            <a href="{% if item.slug %}{% url 'products:get_product' item.slug %}{% endif %}">
+                                <img class="pic-1 img-fluid radius-image" src="${item.image}">
+                                <img class="pic-2 img-fluid radius-image" src="${item.image}">
+                            </a>
+                            <ul class="social">
+                                <li><a href="{% if item.slug %}{% url 'products:get_product' item.slug %}{% endif %}" data-tip="Quick View"><span class="fa fa-eye"></span></a></li>
+                                <li><a href="products.html" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a></li>
+                            </ul>
+                            <div class="shopv single-item">
+                                <form action="#" method="post">
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="shopv_item" value="Checkered Casual Shirt">
+                                    <input type="hidden" name="amount" value="899.99">
+                                    <button type="submit" class="shopv-cart pshopv-cart add-to-cart">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="product-single.html">${item.item_name}</a></h3>
+                            <span class="price"><del>$975.00</del>${item.price}</span>
+                        </div>
+                    </div>
+                </div>`;
+                
+
+                ItemsGrid.insertAdjacentHTML('beforeend', itemHTML);
+            });
+            if(!found){
+                var itemHTML = `<h3 class="text-center">There is nothing in this category for now`;
+                
+
+                ItemsGrid.insertAdjacentHTML('beforeend', itemHTML);
+            }
+        
+        document.getElementById('itemCount').innerText = count;
+    }
+</script>
+
+
+{% endblock %}

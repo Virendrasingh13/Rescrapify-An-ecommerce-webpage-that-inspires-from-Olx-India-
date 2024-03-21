@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+    {% load static %}
+
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> {% block title %}{% endblock %}</title>
+        <!-- google fonts -->
+
+        <link href="http://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&amp;display=swap"
+            rel="stylesheet" type="text/css">
+        <!-- Template CSS -->
+        <link rel="stylesheet" href="{% static 'css/style-liberty.css' %}" type="text/css">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        {% block script%}
+
+        {%endblock%}
+
+
+    </head>
+
+    <body>
+        
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script>
+            (function () {
+                if (typeof _bsa !== 'undefined' && _bsa) {
+                    // format, zoneKey, segment:value, options
+                    _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+                }
+            })();
+        </script>
+        <script>
+            (function () {
+                if (typeof _bsa !== 'undefined' && _bsa) {
+                    // format, zoneKey, segment:value, options
+                    _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+                }
+            })();
+        </script>
+        <script>
+            (function () {
+                if (typeof _bsa !== 'undefined' && _bsa) {
+                    // format, zoneKey, segment:value, options
+                    _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+                }
+            })();
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src='https://www.googletagmanager.com/gtag/js?id=G-98H8KRKT85'></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-98H8KRKT85');
+        </script>
+
+        <meta name="robots" content="noindex">
+
+        <body>
+            <link rel="stylesheet" href="{%static 'css/font-awesome.min.css'%}">
+            <!-- New toolbar-->
+            <style>
+                * {
+                    box-sizing: border-box;
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+                }
+
+
+                #w3lDemoBar.w3l-demo-bar {
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 9999;
+                    padding: 40px 5px;
+                    padding-top: 70px;
+                    margin-bottom: 70px;
+                    background: #0D1326;
+                    border-top-left-radius: 9px;
+                    border-bottom-left-radius: 9px;
+                }
+
+                #w3lDemoBar.w3l-demo-bar a {
+                    display: block;
+                    color: #e6ebff;
+                    text-decoration: none;
+                    line-height: 24px;
+                    opacity: .6;
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
+
+                #w3lDemoBar.w3l-demo-bar span.w3l-icon {
+                    display: block;
+                }
+
+                #w3lDemoBar.w3l-demo-bar a:hover {
+                    opacity: 1;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .w3l-icon svg {
+                    color: #e6ebff;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .responsive-icons {
+                    margin-top: 30px;
+                    border-top: 1px solid #41414d;
+                    padding-top: 40px;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .demo-btns {
+                    border-top: 1px solid #41414d;
+                    padding-top: 30px;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .responsive-icons a span.fa {
+                    font-size: 26px;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .no-margin-bottom {
+                    margin-bottom: 0;
+                }
+
+                .toggle-right-sidebar span {
+                    background: #0D1326;
+                    width: 50px;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    color: #e6ebff;
+                    border-radius: 50px;
+                    font-size: 26px;
+                    cursor: pointer;
+                    opacity: .5;
+                }
+
+                .pull-right {
+                    float: right;
+                    position: fixed;
+                    right: 0px;
+                    top: 70px;
+                    width: 90px;
+                    z-index: 99999;
+                    text-align: center;
+                }
+
+                /* ============================================================
+RIGHT SIDEBAR SECTION
+============================================================ */
+
+                #right-sidebar {
+                    width: 90px;
+                    position: fixed;
+                    height: 100%;
+                    z-index: 1000;
+                    right: 0px;
+                    top: 0;
+                    margin-top: 60px;
+                    -webkit-transition: all .5s ease-in-out;
+                    -moz-transition: all .5s ease-in-out;
+                    -o-transition: all .5s ease-in-out;
+                    transition: all .5s ease-in-out;
+                    overflow-y: auto;
+                }
+
+
+                /* ============================================================
+RIGHT SIDEBAR TOGGLE SECTION
+============================================================ */
+
+                .hide-right-bar-notifications {
+                    margin-right: -300px !important;
+                    -webkit-transition: all .3s ease-in-out;
+                    -moz-transition: all .3s ease-in-out;
+                    -o-transition: all .3s ease-in-out;
+                    transition: all .3s ease-in-out;
+                }
+
+
+
+                @media (max-width: 992px) {
+                    #w3lDemoBar.w3l-demo-bar a.desktop-mode {
+                        display: none;
+
+                    }
+                }
+
+                @media (max-width: 767px) {
+                    #w3lDemoBar.w3l-demo-bar a.tablet-mode {
+                        display: none;
+
+                    }
+                }
+
+                @media (max-width: 568px) {
+                    #w3lDemoBar.w3l-demo-bar a.mobile-mode {
+                        display: none;
+                    }
+
+                    #w3lDemoBar.w3l-demo-bar .responsive-icons {
+                        margin-top: 0px;
+                        border-top: none;
+                        padding-top: 0px;
+                    }
+
+                    #right-sidebar,
+                    .pull-right {
+                        width: 90px;
+                    }
+
+                    #w3lDemoBar.w3l-demo-bar .no-margin-bottom-mobile {
+                        margin-bottom: 0;
+                    }
+                }
+            </style>
+            <!--<div class="pull-right toggle-right-sidebar">-->
+            <!--<span class="fa title-open-right-sidebar tooltipstered fa-angle-double-right"></span>-->
+            <!--</div>-->
+            {% if messages %}
+            {% for msg in messages %}
+            <script>
+                alert("{{msg}}");
+            </script>
+            {% endfor %}
+            {% endif %}
+            </div>
+            </div>
+
+            <!--/Header-->
+            <header id="site-header" class="fixed-top nav-bg">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+                        <h1><a class="navbar-brand pe-xl-5 pe-lg-4" href="/">
+                                <span class="w3yellow">Re</span>Scrapify
+                            </a></h1>
+                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                            <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                        </button>
+                        <div class="collapse navbar-collapse overflow-hidden" id="navbarScroll">
+                            <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                                <li class="nav-item">
+                                    <a class="nav-link  {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home:home' %}">Home</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#Pages" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Buy <span class="fa fa-angle-down ms-1"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item pt-2" href="{% url 'products:buy_product' %}?category=creative">Creativity</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'products:buy_product' %}?category=scrapify">Scrapyard</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  {% if request.resolver_match.url_name == 'sell_product' %}active{% endif %}" 
+                                    href="{% url 'products:sell_product' %}">Sell</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'home:about' %}">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item search-right">
+                                    <a href="#search" class="btn ms-0 search-btn" title="search"><span
+                                            class="fas fa-search me-2" aria-hidden="true"></span></a>
+                                    <!-- search popup -->
+                                    <div id="search" class="pop-overlay">
+                                        <div class="popup">
+                                            <h3 class="title-w3l two mb-4 text-left">Search Here</h3>
+                                            <form action="{% url 'home:search' %}" method="GET" class="search-box d-flex position-relative">
+                                                <input type="search" placeholder="Enter Keyword here" name="search"
+                                                    required="required" autofocus="" class="form-control">
+                                                <button type="submit" class="btn"><span class="fas fa-search"
+                                                        aria-hidden="true"></span></button>
+                                            </form>
+                                        </div>
+                                        <a class="close" href="#close">×</a>
+                                    </div>
+                                    <!-- /search popup -->
+                                </li>
+                            </ul>
+                            <!--/search-right-->
+
+                        </div>
+                        <ul class="header-search navbar-nav me-lg-4 me d-flex">
+                            {% if request.user.is_authenticated %}
+                            <!-- User is authenticated -->
+                            <li class="get-btn me-2 dropdown " id="profileDropdown">
+                                <!-- Profile Dropdown Button -->
+                                <button dropdown-toggle class="btn btn-style btn-secondary dropdown-toggle" type="button" id="userDropdownBtn"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-lg-2"></i> <span class="btn-texe-inf">{{ request.user.first_name }}<span class="fa fa-angle-down ms-1"></span></span>
+                                </button>
+                                <!-- Profile Dropdown Menu -->
+                                <ul class="nav-mb dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item pt-2 {% if request.resolver_match.url_name == 'edit_profile' %}active{% endif %}" href="{% url 'accounts:edit_profile' %}" >Edit Profile</a></li>
+                                    <li><a class="dropdown-item " href="{% url 'accounts:cart'%}">Cart - {{request.user.get_cart_count}}</a> </li>
+                                    <li><a class="dropdown-item " href="{% url 'accounts:your_products'%}">My Products</a> </li>
+                                    <li><a class="dropdown-item " href="{% url 'accounts:your_orders'%}">My Orders</a> </li>
+                                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <!-- User is not authenticated -->
+                            <li class="get-btn me-2 dropdown">
+                                <button class="btn btn-style btn-secondary dropdown-toggle" style="position:relative" type="button" id="userDropdownBtn"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-lg-2"></i> <span class="btn-texe-inf">User</span>
+                                </button>
+                                <!-- Profile Dropdown Menu -->
+                                <ul class=" nav-mb dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item pt-2 {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'accounts:login' %}">Login</a></li>
+                                    <li><a class="dropdown-item {% if request.resolver_match.url_name == 'register' %}active{% endif %}" href="{% url 'accounts:register' %}">Sign-Up</a></li>
+                                </ul>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        
+                        <!--//search-right-->
+                        <!-- toggle switch for light and dark theme -->
+                        <div class="mobile-position">
+                            <nav class="navigation">
+                                <div class="theme-switch-wrapper">
+                                    <label class="theme-switch" for="checkbox">
+                                        <input type="checkbox" id="checkbox">
+                                        <div class="mode-container">
+                                            <i class="gg-sun"></i>
+                                            <i class="gg-moon"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- //toggle switch for light and dark theme -->
+                    </nav>
+                </div>
+            </header>
+
+            <script>
+                var userDropdownBtn = document.getElementById('userDropdownBtn');
+                userDropdownBtn.addEventListener('click', function () {
+                    var navbarCollapse = document.querySelector('.navbar-collapse');
+                    var navbarToggler = document.querySelector('.navbar-toggler');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                        navbarToggler.classList.add('collapsed');
+                    }
+                });
+            </script>
+            <!--//Header-->
+
+            {% block body %}{% endblock %}
+
+            <!-- testimonials section -->
+
+
+            <footer class="w3l-footer-29-main">
+                <div class="footer-29 py-3">
+                    <div class="container py-lg-3 ">
+                        <div class="row footer-top-29 my-md-4">
+                            <div class="col-lg-6 col-md-6 footer-list-29 footer-3 pe-lg-5">
+                                <h6 class="footer-title-29">Useful Links</h6>
+                                <div class="footer-listw3">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <ul class="footer-listw3">
+                                                <li><a href="{% url 'home:home' %}">Home</a></li>
+                                                <li><a href="{% url 'home:about' %}">About</a></li>
+                                                <li><a href="{% url 'home:contact' %}">contact</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <ul class="footer-listw3">
+                                                <li><a href="#support">Support</a></li>
+                                                <li><a href="#news">News & Media</a></li>
+                                                <li><a href="contact">Contact</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 footer-list-29 footer-1 ps-lg-5 mt-lg-0 mt-md-0 mt-4">
+                                <h6 class="footer-title-29">Address</h6>
+                                <div class="footer-listw3">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <ul class="footer-listw3">
+                                                <li>London, UK<br/>
+                                                998 13th Street, Office 436</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <ul class="footer-listw3">
+                                                <li><a href="tel:+916353805608">+(21) 255 999 8888</a></li>
+                                                <li><a href="mailto:harshhh.py@gmail.com" class="mail"><span class="__cf_email__" data-cfemail="bae9d2d5cacac3f1dbc8cefad7dbd3d694d9d5d7">[email&#160;protected]</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row bottom-copies mb-3">
+                            <div class="copy-footer-29 col-lg-8">
+                                <p class="d-sm-block d-lg-inline">© Designed by 
+                                    <a href="https://w3layouts.com/" target="_blank">W3Layouts</a>
+                                </p>
+                                <p class="d-sm-block d-lg-inline"> Developed By 
+                                    <a href="https://www.linkedin.com/in/hrsh-hp/" target="_blank">HARSH</a>
+                                </p>
+                                
+                            </div>
+                            
+                            <div class="col-lg-4 main-social-right mt-lg-0 mt-4">
+                                <div class="main-social-footer-29">
+                                    <a href="#facebook" class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                    <a href="#twitter" class="twitter"><span class="fab fa-twitter"></span></a>
+                                    <a href="#instagram" class="instagram"><span class="fab fa-instagram"></span></a>
+                                    <a href="#linkd" class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% block js %}{% endblock %}
+                <!-- move top -->
+                <button onclick="topFunction()" id="movetop" title="Go to top">
+                    <span class="fa fa-angle-up"></span>
+                </button>
+                <script data-cfasync="false"
+                    src="../../../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                <script>
+                    // When the user scrolls down 20px from the top of the document, show the button
+                    window.onscroll = function () {
+                        scrollFunction()
+                    };
+
+                    function scrollFunction() {
+                        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                            document.getElementById("movetop").style.display = "block";
+                        } else {
+                            document.getElementById("movetop").style.display = "none";
+                        }
+                    }
+
+                    // When the user clicks on the button, scroll to the top of the document
+                    function topFunction() {
+                        document.body.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                    }
+
+                </script>
+                <!-- //move top -->
+            </footer>
+        </div>
+            <!-- Template JavaScript -->
+            <script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+            <script src="{%static 'js/theme-change.js'%}"></script>
+            <!-- price range (top products) -->
+            <script src="{%static 'js/jquery-1.11.1.min.js'%}"></script>
+            <script src="{%static 'js/jquery-ui.js'%}"></script>
+            <script>
+                //<![CDATA[ 
+                $(window).load(function () {
+                    $("#slider-range").slider({
+                        range: true,
+                        min: 0,
+                        max: 9000,
+                        values: [50, 6000],
+                        slide: function (event, ui) {
+                            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                        }
+                    });
+                    $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+                }); //]]>
+
+            </script>
+            {% block script_js %}{% endblock %}
+            <!-- //price range (top products) -->
+            <!-- single -->
+            <script src="{%static 'js/jquery.flexslider.js' %}"></script>
+            <script src="{%static 'js/imagezoom.js'%}"></script>
+            <!-- single -->
+            <script>
+                // Can also be used with $(document).ready()
+                $(window).load(function() {
+                    $('.flexslider1').flexslider({
+                        animation: "slide",
+                        controlNav: "thumbnails"
+                    });
+                });
+
+            </script>
+
+            <!-- cart-js -->
+            <script src="{%static 'js/minicart.js'%}"></script>
+            <script>
+                shopv.render();
+
+                shopv.cart.on('shopv_checkout', function (evt) {
+                    var items, len, i;
+
+                    if (this.subtotal() > 0) {
+                        items = this.items();
+
+                        for (i = 0, len = items.length; i < len; i++) { }
+                    }
+                });
+
+            </script>
+            <!-- //cart-js -->
+            <!-- owlcarousel -->
+            <script src="{%static 'js/owl.carousel.js'%}"></script>
+            <script>
+                
+            </script>
+
+            
+            <!-- script for banner slider-->
+            <script>
+                $(document).ready(function () {
+                    $('.owl-one').owlCarousel({
+                        loop: true,
+                        margin: 0,
+                        nav: false,
+                        responsiveClass: true,
+                        autoplay: true,
+                        autoplayTimeout: 5000,
+                        autoplaySpeed: 1000,
+                        autoplayHoverPause: false,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            480: {
+                                items: 1
+                            },
+                            667: {
+                                items: 1
+                            },
+                            1000: {
+                                items: 1
+                            }
+                        }
+                    })
+                })
+
+            </script>
+            <!-- //script -->
+            <!-- script for tesimonials carousel slider -->
+            <script>
+                $(document).ready(function () {
+                    $("#owl-demo2").owlCarousel({
+                        loop: true,
+                        nav: false,
+                        margin: 50,
+                        responsiveClass: true,
+                        responsive: {
+                            0: {
+                                items: 1,
+                                nav: false
+                            },
+                            736: {
+                                items: 1,
+                                nav: false
+                            },
+                            991: {
+                                items: 2,
+                                margin: 30,
+                                nav: false
+                            },
+                            1080: {
+                                items: 2,
+                                nav: false
+                            }
+                        }
+                    })
+                })
+
+            </script>
+            <!-- //script for tesimonials carousel slider -->
+            <!-- video popup -->
+            <script src="{%static 'js/jquery.magnific-popup.min.js'%}"></script>
+            <script>
+                $(document).ready(function () {
+                    $('.popup-with-zoom-anim').magnificPopup({
+                        type: 'inline',
+
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+
+                        overflowY: 'auto',
+
+                        closeBtnInside: true,
+                        preloader: false,
+
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-zoom-in'
+                    });
+
+                    $('.popup-with-move-anim').magnificPopup({
+                        type: 'inline',
+
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+
+                        overflowY: 'auto',
+
+                        closeBtnInside: true,
+                        preloader: false,
+
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-slide-bottom'
+                    });
+                });
+
+            </script>
+            <!-- //video popup -->
+
+            <!-- MENU-JS -->
+            <script>
+                $(window).on("scroll", function () {
+                    var scroll = $(window).scrollTop();
+
+                    if (scroll >= 10 && scroll <= 300) {
+                        $("#site-header").addClass("nav-fixed");
+                    } 
+                    else if(scroll >=300 || scroll <10){
+                        $("#site-header").removeClass("nav-fixed");
+                       // $("#site-header").addClass("nav-bg");
+                    }
+                   
+                });
+
+                //Main navigation Active Class Add Remove
+                $(".navbar-toggler").on("click", function () {
+                    $("header").toggleClass("active");
+                });
+                $(document).on("ready", function () {
+                    if ($(window).width() > 991) {
+                        $("header").removeClass("active");
+                    }
+                    $(window).on("resize", function () {
+                        if ($(window).width() > 991) {
+                            $("header").removeClass("active");
+                        }
+                    });
+                });
+
+            </script>
+            <!-- //MENU-JS -->
+
+            <!-- disable body scroll which navbar is in active -->
+            <script>
+                $(function () {
+                    $('.navbar-toggler').click(function () {
+                        $('body').toggleClass('noscroll');
+                    })
+                });
+
+            </script>
+            <!-- //disable body scroll which navbar is in active -->
+
+             <!-- //bootstrap -->
+            <script src="{%static 'js/bootstrap.min.js'%}"></script>
+
+            <script>
+                // Add active class to navbar items on click
+                $('.nav-link').on('click', function () {
+                    $('.nav-link').removeClass('active');
+                    $(this).addClass('active');
+                });
+            </script>
+
+            <script>(function () { var js = "window['__CF$cv$params']={r:'846e930789012e8a',t:'MTcwNTQ5NDI1OC4zMjYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../../../../../cdn-cgi/challenge-platform/h/b/scripts/jsd/c8377512/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);"; var _0xh = document.createElement('iframe'); _0xh.height = 1; _0xh.width = 1; _0xh.style.position = 'absolute'; _0xh.style.top = 0; _0xh.style.left = 0; _0xh.style.border = 'none'; _0xh.style.visibility = 'hidden'; document.body.appendChild(_0xh); function handler() { var _0xi = _0xh.contentDocument || _0xh.contentWindow.document; if (_0xi) { var _0xj = _0xi.createElement('script'); _0xj.innerHTML = js; _0xi.getElementsByTagName('head')[0].appendChild(_0xj); } } if (document.readyState !== 'loading') { handler(); } else if (window.addEventListener) { document.addEventListener('DOMContentLoaded', handler); } else { var prev = document.onreadystatechange || function () { }; document.onreadystatechange = function (e) { prev(e); if (document.readyState !== 'loading') { document.onreadystatechange = prev; handler(); } }; } })();</script>
+        </body>
+
+</html>

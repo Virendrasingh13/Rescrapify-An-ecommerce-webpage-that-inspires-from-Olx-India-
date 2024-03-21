@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Cart - Re:scrapify{% endblock %}</title>
+{% block body %}
+
+<section class="w3mid-gap"></section>
+    <!--/Banner-Start-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Home </h2>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href="{% url 'home:home' %}">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span>Cart - Checkout</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+<section class="w3l-ecommerce-main">
+
+    <!-- /products-->
+    
+    <div class="ecom-contenthny py-5">
+        <div class="container py-lg-5">
+            <!-- about -->
+            <div class="ecom-contenthny-w3lcheckout privacy">
+                <h3>Chec<span>kout</span></h3>
+                <div class="checkout-right">
+                    <p class="mb-5">Your shopping cart contains: <span>{{request.user.get_cart_count}} Products</span></p>
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                <th>SL No.</th>
+                                <th>Product</th>
+                                <th>Quality</th>
+                                <th>Product Name</th>
+
+                                <th>Price</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% if cart.cart_items.count  > 0 %}
+                                {% for cart_item in cart.cart_items.all %}
+                                <tr class="rem2">
+                                    <td class="invert">{{ forloop.counter }}</td>
+                                    <td class="invert-image"><a href="{% url 'products:get_product' cart_item.item.slug %}"><img src="../../media/{{cart_item.item.item_image.first.image}}" class="img-fluid radius-image" alt=""></a></td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                
+                                                <div class="entry value"><span>1</span></div>
+                                                
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="invert">{{cart_item.item.item_name}}</td>
+
+                                    <td class="invert">{{cart_item.get_item_price}} <i class="fas fa-rupee-sign"></i></td>
+                                    <td class="invert">
+                                        <div class="rem cls-btn text-center">
+                                            <a href="{% url 'accounts:remove_cart' cart_item.item.slug%}"><i class="far fa-window-close"></i></a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                            {% else %}
+
+                            <tr class="rem2">
+                                <td class="invert" colspan="6">There's nothing in your cart</td>
+                            </tr>
+                            {% endif %}
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row checkout-left mt-5">
+                    {% comment %} <div class="col-md-4 checkout-left-basket">
+                        
+                        <h4>Continue to basket</h4>
+                        <ul>
+                            {% for cart_item in cart.cart_items.all %}
+                            <li>Product {{ forloop.counter }}<i> - </i> <span>{{ cart_item.get_item_price}}</span></li>
+                            {% endfor %}
+                            <li>Total Service Charges <i>-</i> <span>$10.00</span></li>
+                            <li>Total <i>-</i> <span>{{cart.get_cart_total}}</span></li>
+                        </ul>
+                    </div> {% endcomment %}
+                    {% if cart.cart_items.count > 0 %}
+                    <div class="col-md-4 checkout-left-basket">
+                        <h4>Continue to basket</h4>
+                        <ul>
+
+                            {% for cart_item in cart.cart_items.all %}
+                            <li>Product {{ forloop.counter }} <i>-</i> <span>{{ cart_item.get_item_price}} <i class="fas fa-rupee-sign"></i></span></li>
+                            {% endfor %}
+                        
+                            <li class="total">Total <i>-</i> <span>{{cart.get_cart_total}} <i class="fas fa-rupee-sign"></i></span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8 address_form_agile ps-lg-5">
+                        <h4>Add a new Details</h4>
+                        <form method="post" class="creditly-card-form agileinfo_form mt-4" id="order-form">
+                            {% csrf_token %}
+                            <input class="billing-address-name form-control" type="hidden" name="order_id" placeholder="order_id" value="{{payment.id}}" >
+                            <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                                <div class="information-wrapper">
+                                    <div class="first-row form-group">
+
+                                        <div class="controls">
+                                            
+                                            <input required class="billing-address-name form-control" type="email" name="email" placeholder="Email" value="{{request.user.email}}" >
+                                        </div>
+                                        <div class="controls">
+
+                                            <input required class="billing-address-name form-control" type="text" name="name" placeholder="Full name" value="{{request.user.first_name}} {{request.user.last_name}}">
+                                        </div>
+                                        <div class="w3_agileits_card_number_grids">
+                                            <div class="w3_agileits_card_number_grid_left">
+                                                <div class="controls">
+
+                                                    <input required class="form-control" type="text" name="phone_no" placeholder="Mobile number" value="{{request.user.phone_no}}">
+                                                </div>
+                                            </div>
+                                            <div class="w3_agileits_card_number_grid_right">
+                                                <div class="controls">
+
+                                                    <input required class="form-control" type="text" name="address" placeholder="Address" value="">
+                                                </div>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <div class="controls">
+
+                                            <input required class="form-control" type="text" name="city" placeholder="Town/City" value="{{request.user.city}}">
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- <button class="submit check_out btn btn-style btn-primary">Delivery to this Address</button> -->
+                                </div>
+                            </section>
+                            
+                        </form>
+                        <div class="checkout-right-basket text-center">
+                            {% comment %} <a class="btn btn-style btn-primary" href="payment.html">Make a Payment <i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a> {% endcomment %}
+                            <button id="rzp-button1" class="btn btn-style btn-primary">Pay with Razorpay <i class="fas fa-arrow-right ms-lg-3 ms-2"></i> </button> 
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- //about -->
+        </div>
+    </div>
+
+</section>
+<div style="margin: 7px auto; display: block; text-align:center;">
+
+{% endblock %}
+
+{% block js %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    var options = {
+        "key": "rzp_test_TqHFum4mPJRzWx", // Enter the Key ID generated from the Dashboard
+        "amount": "{{ payment.amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "RESCAPIFY",
+        "description": "Purchases",
+        "image": "https://example.com/your_logo",
+        "order_id": "{{ payment.id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response) {
+
+            var form_data = $('#order-form').serializeArray(); // Serialize form data
+            form_data.push({name: 'razorpay_payment_id', value: response.razorpay_payment_id});
+            form_data.push({name: 'razorpay_order_id', value: response.razorpay_order_id});
+            form_data.push({name: 'razorpay_signature', value: response.razorpay_signature});
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "accounts:success" %}',
+                data: form_data,
+                success: function(data) {
+                    if (data.success) {
+                        // Redirect to success page
+                        window.location.href = '{% url "accounts:success" %}?razorpay_order_id='+response.razorpay_order_id;
+                    } else {
+                        // Handle error
+                        alert('Payment processing failed.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    alert('An error occurred while processing payment.');
+                }
+            });
+        },
+       
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response){
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+    });
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+
+
+</script>
+
+{% endblock %}

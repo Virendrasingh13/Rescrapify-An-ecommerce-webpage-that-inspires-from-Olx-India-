@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}Profile - Re:scrapify{% endblock %}</title>
+{% block body %}
+
+    <section class="w3mid-gap"></section>
+        <!--/Banner-Start-->
+        <!--/inner-page-->
+        <div class="inner-banner py-5">
+            <section class="w3l-breadcrumb text-left py-sm-5 ">
+                <div class="container">
+                    <div class="w3breadcrumb-gids">
+                        <div class="w3breadcrumb-left text-left">
+                            <h2 class="inner-w3-title">
+                                Edit Profile </h2>
+                        </div>
+                        <div class="w3breadcrumb-right">
+                            <ul class="breadcrumbs-custom-path">
+                                <li><a href="{% url 'home:home' %}">Home</a></li>
+                                <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Edit Profile </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    <!--//inner-page-->
+	<div style="margin: 8px auto; display: block; text-align:center;">
+
+    
+        <section class="w3l-contact-2 j" id="contact">
+            <div class="container py-lg-4 py-md-3 py-2">
+                <div class="title-content text-center">
+                    <h6 class="title-subw3hny mb-1">{{request.user}}</h6>
+                    <h5 class="title-w3l mb-4">Edit Your Profile<br>
+                    </h5>
+                </div>
+                
+    
+                <div class="contact-grids mt-3 pt-lg-3">
+                    <!-- Button trigger modal -->
+                    <div class="contact-right">
+                        <div class="input-grids">
+                            <button type="button" class="btn btn-primary mb-mb-3" data-bs-toggle="modal" data-bs-target="#chngemailmodal">
+                                Change Email
+                            </button>
+                            <button type="button" class="btn btn-primary mb-mb-3" data-bs-toggle="modal" data-bs-target="#chngpassmodal">
+                                Change Password
+                            </button>
+                        </div>    
+                        <!-- Modal -->
+                        <div class="modal fade" id="chngemailmodal" tabindex="-1" aria-labelledby="chngemailmodallabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h6 class="modal-title title-subw3hny" id="exampleModalLabel">Change Email</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" class="signin-form" id="email-change-form" autocomplete="off">
+                                        {% csrf_token %}
+                                        {% comment %} {% if messages %}
+                                                {% for message in messages %}
+                                                <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                                                    {{ message }}
+                                                  </div>
+                                                  {% endfor %}      
+                                            {% endif %} {% endcomment %}
+                                        <div class="" >
+                  
+                                            <input type="email"  name="cur_email" id="cur_email" placeholder="Current Email*" class="contact-input"
+                                                required value="{{request.user.email}}" readonly>
+                                            <input type="email" name="new_email" id="new_email" placeholder="New Email*" class="contact-input"
+                                                required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" >Update Email</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    
+                        
+                        
+                        <!-- Modal -->
+                       
+                        <div class="modal fade" id="chngpassmodal" tabindex="-1" aria-labelledby="chngpassmodallabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title title-subw3hny" id="exampleModalLabel">Change Password - {{ request.user }}</h6>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" class="signin-form" id="password-change-form" autocomplete="off">
+                                            {% csrf_token %}
+                                            <div class="form-sub-w3">
+                                                <input type="password" name="cur_password" id="cur_password" placeholder="Current Password*" class="w-75 contact-input" required>
+                                                <span class="toggle-password fas fa-eye"></span>
+                                            </div>
+                                            <div class="form-sub-w3">
+                                                <input type="password" name="new_password" id="new_password" placeholder="New Password*" class="w-75 contact-input" required>
+                                                <span class="toggle-password fas fa-eye"></span>
+                                            </div>
+                                            <div class="form-sub-w3">
+                                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password*" class="w-75 contact-input" required>
+                                                <span class="toggle-password fas fa-eye"></span>
+                                            </div>
+                                            <div id="password-error" class="text-danger"></div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Update Password</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contact-right mt-lg-4">
+                        <form method="post" class="signin-form" id="contact-form" autocomplete="off" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                                        {{ message }}
+                                      </div>
+                                      {% endfor %}      
+                            {% endif %}
+                            <div class="input-grids" >
+    
+                                
+                                <input type="text" name="first_name" id="name" value="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}" placeholder="First Name*" class="contact-input"
+                                    required>
+                                <input type="text" name="last_name" id="last_name" placeholder="Last Name*" value="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}" class="contact-input"
+                                    required>
+                                <input type="email" name="email" id="email" placeholder="Your Email*" value="{{request.user.email}}" readonly class="contact-input"
+                                    required>
+                                <input type="text" name="phone_no" id="phone_no" value="{% if request.user.phone_no %}{{request.user.phone_no}}{%endif%}" placeholder="Enter your Phone Number *"
+                                    required>
+                                <input type="text" name="city" id="city" value="{% if request.user.city %}{{request.user.city}}{% endif %}" placeholder="City*"
+                                    required>
+                                <input type="text" name="state" id="state" placeholder="State*" class="contact-input" value="{% if request.user.state %}{{request.user.state}}{%endif%}"
+                                    required>
+                            </div>
+                            {% comment %} <div class="form-input">
+                                <textarea name="message" id="message" placeholder="Type your message here*"
+                                    required=""></textarea>
+                            </div> {% endcomment %}
+                            <div class="form-input form-sub-w3">
+                                <div class="form-group image-preview-container">
+                                    <input type="file" name="user_image" id="image" class="form-control-file" accept="image/*" />
+                                        <img class="image-preview image-box" id="image-preview" 
+                                        src="{% if request.user.user_image %}{{ request.user.user_image.url }}{% endif %}" 
+                                        alt="Image Preview" style="display: block;">
+                                    
+                                </div>
+                            </div>
+                            <div class="submit text-lg-right">
+                                <button class="btn btn-style btn-primary">Submit</button>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+    var user_email = '{{request.user.email}}';
+    var user_image_url = '{% if request.user.user_image %}{{ request.user.user_image.url }}{% endif %}';
+    console.log(user);
+</script>
+<script src="{%static 'js/imagepreview.js'%}"></script>
+<script>
+        const form_pass = document.getElementById('password-change-form');
+        const newPassword = document.getElementById('new_password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const passwordError = document.getElementById('password-error');
+        
+        
+        form_pass.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (newPassword.value !== confirmPassword.value) {
+                passwordError.textContent = "Passwords do not match";
+                
+            } else {
+                passwordError.textContent = ""; // Clear any previous error message
+                // Check current password before submitting the form
+                submitForm();
+            }
+        });
+
+
+        function submitForm() {
+            const formData = new FormData(form_pass)
+            console.log(form_pass)
+            fetch('{% url "accounts:change_password" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.success) {
+                    // Handle success response here
+                    alert(data.message)
+                    window.location.href = "{% url 'accounts:login' %}";
+                    $('#chngpassmodal').modal('hide');
+                } else {
+                    passwordError.textContent = data.message;
+                }
+            }).catch(error => {
+                console.error("Network error occurred", error);
+            });
+        }
+</script>
+
+<script>
+    const form_email = document.getElementById('email-change-form');
+    form_email.addEventListener('submit', function (event) 
+    {
+        const formData = new FormData(form_email)
+        console.log(formData)
+        event.preventDefault();
+        fetch('{% url "accounts:change_email" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if (data.success) {
+                // Handle success response here
+                alert(data.message)
+                window.location.href = "{% url 'accounts:login' %}";
+                $('#chngpassmodal').modal('hide');
+            } else {
+                event.preventDefault(); 
+                passwordError.textContent = data.message;
+            }
+        }).catch(error => {
+            console.error("Network error occurred", error);
+        });
+        
+    });    
+</script>
+
+
+<script src="{%static 'js/showpass.js'%}"></script>
+
+  
+{% endblock%}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}LOGIN - Re:scrapify{% endblock %}</title>
+{% block body %}
+<section class="w3layouts-errorhny">
+    <div class="w3l-error-grid py-5 text-center">
+        <div class="container py-lg-4">
+            <div class="error-block">
+                <h1>Success</h1>
+                <h2><a href="{% url 'accounts:invoice' order_id %}" class="btn btn-secondary">Invoice</a></h2>
+                <p class="mt-4">Your payment has been succeed<br>Congratulations</p>
+
+                <a href="{% url 'home:home' %}" class="btn btn-style btn-primary mt-4"> <span class="fa fa-arrow-left me-2"></span> Back to Home</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

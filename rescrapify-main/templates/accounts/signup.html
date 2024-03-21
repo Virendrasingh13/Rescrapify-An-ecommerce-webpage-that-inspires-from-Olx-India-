@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}SignUp - Re:scrapify{% endblock %}</title>
+{% block body %}
+
+    <section class="w3mid-gap"></section>
+    <!--/Banner-Start-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Sign-Up </h2>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href="{% url 'home:home' %}">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Sign-Up </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+	<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90-->
+
+ 
+</div>
+    <section class="w3l-forml-main ">
+        <div class="form-hnyv-sec py-sm-5 py-3">
+            <!--form-stars-here-->
+            <div class="form-wrapv">
+
+                <h2>Register to your account</h2>
+                <form method="post" id="signup-form " class="signin-form" autocomplete="off" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    {% if messages %}
+                      {% for message in messages %}
+                        <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                            {{ message }}
+                        </div>
+                      {% endfor %}      
+                    {% endif %}
+                    <div class="row contact-form">
+                        <div class="col-sm-6 form-sub-w3">
+                            <input type="text" name="first_name" class="" placeholder="First Name" />
+                            <div class="icon-w3">
+                                <span class="fas fa-user" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-sub-w3">
+                            <input type="text" name="last_name" class="" placeholder="Last Name" />
+                            <div class="icon-w3">
+                                <span class="fas fa-user" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-sub-w3">
+                        <input type="email" name="email" placeholder="Email" required="" />
+                        <div class="icon-w3">
+                            <span class="fas fa-envelope" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-sub-w3">
+                        <input type="text" name="phone_no" placeholder="Phone No." />
+                        <div class="icon-w3">
+                            <span class="fas fa-phone" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-sub-w3">
+                        <input type="password" name="password" placeholder="Password" required="" />
+                        <div class="icon-w3">
+                            <span class="fas fa-eye" aria-hidden="true" id="password-toggle"></span>
+                        </div>
+                    </div>
+                    <div class="form-sub-w3">
+                        <div class="form-group image-preview-container">
+                            <input type="file" name="user_image" id="image" class="form-control-file" accept="image/*" />
+                            <div class="icon-w3" id="imagespan">
+                                <span class="fas fa-file-image" aria-hidden="true"></span>
+                            </div>
+                                <img class="image-preview image-box" id="image-preview" src="#" alt="Image Preview" style="display: none;">
+                            
+                        </div>
+                    </div>
+                    <div class="form-sub-w3ls card-footer">
+                        <p class="forgot-w3ls">Forgot Password?<a class href="#" data-bs-toggle="modal" data-bs-target="#emailmodal">Click here</a></p>
+                        <p class="forgot-w3ls1">Already have an account? <a class href="{% url 'accounts:login' %}">Login here</a></p>
+                    </div>
+                    <div class="mt-2 submit-button text-center">
+                        <button type="submit" class="btn btn-style btn-primary">Submit</button>
+
+                    </div>
+                </div>
+                </form>
+
+                <!-- Modal for forgot password email -->
+                <div class="modal fade" id="emailmodal" tabindex="-1" aria-labelledby="emailmodallabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title title-subw3hny" id="exampleModalLabel">Email to forgot password request</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" class="signin-form" id="password-change-form" action="{% url 'accounts:check_email'%}" 
+                                autocomplete="off">
+                                    {% csrf_token %}
+                                    <div class="form-sub-w3">
+                                        <input type="email" name="cur_email" id="cur_email" placeholder="Current Email*" class="contact-input"
+                                                required>
+                                    </div>
+                                    
+                                    <div id="password-error" class="text-danger"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Update Password</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End of modal -->
+                        
+
+            </div>
+            <!--//form-ends-here-->
+        </div>
+        <!-- //coming -->
+    </section>
+	<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90-->
+ 
+
+{% endblock %}
+
+{% block js %}
+
+
+<script src="{%static 'js/imagepreview.js'%}"></script>
+
+<script src="{%static 'js/showpass.js'%}"></script>
+
+
+  
+{% endblock%}
