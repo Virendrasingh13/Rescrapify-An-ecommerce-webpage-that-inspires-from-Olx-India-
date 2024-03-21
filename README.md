@@ -88,4 +88,10 @@
     python manage.py runserver
     ```
 
+13. Pull The Updates:
+    ```bash
+    git remote -v 
+
+    git pull origin main   
+    ```
 
