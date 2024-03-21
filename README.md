@@ -15,7 +15,10 @@
 2. Create a new virtual environment:
     ```bash
     python -m venv venv
+
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
     ```
+
 
 3. Activate the virtual environment:
     ```bash
